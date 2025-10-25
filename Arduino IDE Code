@@ -1,0 +1,73 @@
+#define BLYNK_TEMPLATE_ID "YourTemplateID"
+#define BLYNK_DEVICE_NAME "Smart Energy Meter"
+#define BLYNK_AUTH_TOKEN "YourAuthToken"
+
+#include <WiFi.h>
+#include <BlynkSimpleEsp32.h>
+#include <LiquidCrystal.h>
+#include "EmonLib.h"
+
+EnergyMonitor emon1;
+LiquidCrystal lcd(13, 12, 14, 27, 26, 25); 
+
+char auth[] = BLYNK_AUTH_TOKEN;
+char ssid[] = "YourWiFiName";
+char pass[] = "YourWiFiPassword";
+
+#define VOLTAGE_SENSOR 34
+#define CURRENT_SENSOR 35
+
+float voltage = 0.0;
+float current = 0.0;
+float power = 0.0;
+float energy = 0.0;
+unsigned long lastTime = 0;
+
+void setup() {
+  Serial.begin(9600);
+  Blynk.begin(auth, ssid, pass);
+
+  lcd.begin(16, 2);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Smart Energy");
+  lcd.setCursor(0, 1);
+  lcd.print("Meter Initializing");
+  delay(2000);
+  lcd.clear();
+
+  emon1.voltage(VOLTAGE_SENSOR, 260.0, 1.7);
+  emon1.current(CURRENT_SENSOR, 60.606);
+}
+
+void loop() {
+  Blynk.run();
+
+  emon1.calcVI(20, 2000);
+  voltage = emon1.Vrms;
+  current = emon1.Irms;
+  power = voltage * current;
+  unsigned long currentTime = millis();
+  float elapsedHours = (currentTime - lastTime) / 3600000.0;
+  energy += power * elapsedHours;
+  lastTime = currentTime;
+
+  lcd.setCursor(0, 0);
+  lcd.print("V:");
+  lcd.print(voltage, 1);
+  lcd.print(" I:");
+  lcd.print(current, 2);
+
+  lcd.setCursor(0, 1);
+  lcd.print("P:");
+  lcd.print(power, 1);
+  lcd.print(" E:");
+  lcd.print(energy, 2);
+
+  Blynk.virtualWrite(V0, voltage);
+  Blynk.virtualWrite(V1, current);
+  Blynk.virtualWrite(V2, power);
+  Blynk.virtualWrite(V3, energy);
+
+  delay(1000);
+}
