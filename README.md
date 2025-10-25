@@ -11,8 +11,8 @@ Machine Learning: Linear Regression Model for Energy Consumption Prediction
 # Circuit Diagram:
 ![Circuit Diagram](Project_Circuit_Diagram.png)
 
-#Working Principle of Current Sensor:
+# Working Principle of Current Sensor:
 ![Working Principle – Current Sensor](Working_Principle_Current_Sensor.png)
 
-#Working Principle of Voltage Sensor:
+# Working Principle of Voltage Sensor:
 ![Working Principle – Voltage Sensor](Working_Principle_Voltage_Sensor.png)
