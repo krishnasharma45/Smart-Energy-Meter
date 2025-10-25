@@ -1,6 +1,6 @@
-#define BLYNK_TEMPLATE_ID "YourTemplateID"
+#define BLYNK_TEMPLATE_ID "TemplateID"
 #define BLYNK_DEVICE_NAME "Smart Energy Meter"
-#define BLYNK_AUTH_TOKEN "YourAuthToken"
+#define BLYNK_AUTH_TOKEN "AuthToken"
 
 #include <WiFi.h>
 #include <BlynkSimpleEsp32.h>
@@ -11,8 +11,8 @@ EnergyMonitor emon1;
 LiquidCrystal lcd(13, 12, 14, 27, 26, 25); 
 
 char auth[] = BLYNK_AUTH_TOKEN;
-char ssid[] = "YourWiFiName";
-char pass[] = "YourWiFiPassword";
+char ssid[] = "WiFiName";
+char pass[] = "WiFiPassword";
 
 #define VOLTAGE_SENSOR 34
 #define CURRENT_SENSOR 35
