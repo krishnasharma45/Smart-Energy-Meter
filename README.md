@@ -17,6 +17,6 @@ Machine Learning: Linear Regression Model for Energy Consumption Prediction
 # Working Principle of Voltage Sensor:
 ![Working Principle – Voltage Sensor](Working_Principle_Voltage_Sensor.png)
 
-# Trained Model
+# Trained Model:
 [View Model Training Notebook](Smart_Energy_Meter_Model_Train.ipynb)
 
