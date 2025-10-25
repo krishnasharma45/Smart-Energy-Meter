@@ -9,8 +9,9 @@ Data Analysis & Modeling: Python, Pandas, Matplotlib, Scikit-learn
 Machine Learning: Linear Regression Model for Energy Consumption Prediction
 
 # Circuit Diagram:
-![Circuit Diagram](![Smart Energy Meter](Circuit Diagram.png)
-)
+![Circuit Diagram](Project_Circuit_Diagram.png)
+
+
 
 
 
